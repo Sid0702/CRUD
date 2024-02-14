@@ -1,0 +1,15 @@
+<!-- app_restro/templates/html_pages/delete_order.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-center mb-4">Confirm Deletion</h2>
+        <p>Are you sure you want to delete the order for {{ order.name }}?</p>
+        <form method="post" action="{% url 'delete_order' order.order_id %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'order_display' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

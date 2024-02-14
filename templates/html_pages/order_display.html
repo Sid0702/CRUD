@@ -1,0 +1,38 @@
+<!-- app_restro/templates/html_pages/order_display.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="text-center mb-4">Ordered Items</h2>
+        {% if orders %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for order in orders %}
+                        <tr>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.item }}</td>
+                            <td>{{ order.quantity }}</td>
+                            <td>{{ order.price }}</td>
+                            <td>
+                                <a href="{% url 'edit_order' order.order_id %}" title="Edit"><i class="fas fa-edit"></i></a>
+                                <a href="{% url 'delete_order' order.order_id %}" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No orders yet.</p>
+        {% endif %}
+    </div>
+{% endblock %}
